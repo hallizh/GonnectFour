@@ -26,7 +26,7 @@ func Play() {
 
 		printBoard(a)
 		if isWinner(a, player) {
-			fmt.Println("Congrats player", player, " you win!")
+			fmt.Println("Congrats player", player, "you win!")
 			break
 		}
 
@@ -87,6 +87,7 @@ func isWinner(gameboard [][]int, player int) bool {
 		}
 		bitboard = bitboard + "0"
 	}
+
 	// Messy way to fill in bits
 	bitboard = bitboard + "000000000000000"
 
@@ -95,49 +96,29 @@ func isWinner(gameboard [][]int, player int) bool {
 		fmt.Println(err)
 		fmt.Println("Something's gone terribly wrong!")
 	}
-
-	// // check \ diagonal
-	// y := board & (board >> 6)
-	// if (y & (y >> 2 * 6)) != 0 {
-	// 	return true
-	// }
-
-	// // check horizontal
-	// y = board & (board >> 7)
-	// if (y & (y >> 2 * 7)) != 0 {
-	// 	return true
-	// }
-
-	// // check / diagonal
-	// y = board & (board >> 8)
-	// if (y & (y >> 2 * 8)) != 0 {
-	// 	return true
-	// }
-
-	// // check vertical
-	// y = board & (board >> 1)
-	// if (y & (y >> 2)) != 0 {
-	// 	return true
-	// }
-
-	// return false
-
-	return isWin(board)
-}
-
-func isWin(bitboard uint64) bool {
-	if bitboard&(bitboard>>6)&(bitboard>>12)&(bitboard>>18) != 0 {
-		return true // diagonal \
-	}
-	if bitboard&(bitboard>>8)&(bitboard>>16)&(bitboard>>24) != 0 {
-		return true // diagonal /
+	// check \ diagonal
+	y := board & (board >> 6)
+	if y&(y>>(2*6)) != 0 {
+		return true
 	}
 
-	if bitboard&(bitboard>>7)&(bitboard>>14)&(bitboard>>21) != 0 {
-		return true // horizontal
+	// check horizontal
+	y = board & (board >> 7)
+	if y&(y>>(2*7)) != 0 {
+		return true
 	}
-	if bitboard&(bitboard>>1)&(bitboard>>2)&(bitboard>>3) != 0 {
-		return true // vertical
+
+	// check / diagonal
+	y = board & (board >> 8)
+	if y&(y>>(2*8)) != 0 {
+		return true
 	}
+
+	// check vertical
+	y = board & (board >> 1)
+	if y&(y>>(2*1)) != 0 {
+		return true
+	}
+
 	return false
 }
