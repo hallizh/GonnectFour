@@ -8,6 +8,7 @@ import (
 func Play() {
 	player, next := 1, 2
 	a := getBoard()
+	printBoard(a)
 
 	for true {
 		var i int
