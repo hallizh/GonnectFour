@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/hallizh/connect-four/board"
+	"github.com/hallizh/GonnectFour/board"
 )
 
 func main() {

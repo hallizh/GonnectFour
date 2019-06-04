@@ -6,7 +6,6 @@ import (
 )
 
 func Play() {
-	fmt.Println("yo")
 	player, next := 1, 2
 	a := getBoard()
 
@@ -74,8 +73,7 @@ func printBoard(board [][]int) {
 }
 
 // https://github.com/qu1j0t3/fhourstones/blob/master/Connect4.java
-// algorithm to heck for win using a bitboard
-
+// algorithm to check for win using a bitboard - need to figure out what is wrong with my impl
 func isWinner(gameboard [][]int, player int) bool {
 	bitboard := ""
 	for y := 0; y < 7; y++ {
@@ -88,6 +86,7 @@ func isWinner(gameboard [][]int, player int) bool {
 		}
 		bitboard = bitboard + "0"
 	}
+	// Messy way to fill in bits
 	bitboard = bitboard + "000000000000000"
 
 	board, err := strconv.ParseUint(bitboard, 2, 64)
